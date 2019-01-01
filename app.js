@@ -7,21 +7,17 @@ app.get('/', function(req, res) {
 })
 
 app.get('/speak/:animalName', function(req, res) {
-    const animal = req.params.animalName
-    let sound = ""
+    const sounds = {
+        pig: 'Oink',
+        cow: 'Moo',
+        dog: 'Wof Wof!',
+        cat: 'Meooooww',
+        goldfish: '...'
+    }
+    const animal = req.params.animalName.toLowerCase()
+    const sound = sounds[animal]
 
-    if (animal === 'pig') {
-        sound = 'Oink'
-    }
-    if (animal === 'cow') {
-        sound = 'Moo'
-    }
-    if (animal === 'dog') {
-        sound = 'Wof Wof!'
-    }
-
-    res.send(`The ${animal} says ${sound}`)
-   
+    res.send(`The ${animal} says "${sound}"`)   
 })
 
 app.get('/repeat/:wordName/:numberOfTimes', function(req, res) {
@@ -29,7 +25,6 @@ app.get('/repeat/:wordName/:numberOfTimes', function(req, res) {
     const num = req.params.numberOfTimes
 
  
-
 
     res.send(`${word.repeat(num)}`)
 })
